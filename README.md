@@ -13,7 +13,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>CircleCI</td>
+    <td>
+      <a href="https://circleci.com/gh/conda-forge/fastjet-feedstock">
+        <img alt="Arm64,PowerPC64" src="https://img.shields.io/circleci/project/github/conda-forge/fastjet-feedstock/main.svg?label=Arm64,PowerPC64">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
