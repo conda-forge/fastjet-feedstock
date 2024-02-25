@@ -4,6 +4,3 @@ github:
 conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
-provider:
-  linux_aarch64: circle
-  linux_ppc64le: circle
