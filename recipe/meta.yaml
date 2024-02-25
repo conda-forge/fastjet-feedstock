@@ -14,7 +14,7 @@ source:
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
 
 build:
-  number: 2
+  number: 4
   skip: true  # [not linux]
   script:
     # Use 'python -m build' to build a wheel first to avoid having the overlinking
