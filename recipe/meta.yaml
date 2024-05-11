@@ -38,7 +38,6 @@ requirements:
     - pip
     - pybind11
     - python
-    - setuptools_scm  # required for 'python -m build'
   run:
     - awkward >=2
     - numpy >=1.13.3
