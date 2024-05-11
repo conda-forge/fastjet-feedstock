@@ -6,4 +6,4 @@ conda_build:
 conda_forge_output_validation: true
 provider:
   linux_aarch64: native
-  linux_ppc64le: circle
+  linux_ppc64le: native
