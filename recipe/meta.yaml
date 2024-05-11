@@ -14,8 +14,8 @@ source:
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
 
 build:
-  number: 7
-  skip: true  # [not linux]
+  number: 8
+  skip: true  # [win]
   script:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
