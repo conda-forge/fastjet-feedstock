@@ -14,13 +14,6 @@ Current build status
 
 
 <table><tr>
-    <td>CircleCI</td>
-    <td>
-      <a href="https://circleci.com/gh/conda-forge/fastjet-feedstock">
-        <img alt="PowerPC64" src="https://img.shields.io/circleci/project/github/conda-forge/fastjet-feedstock/main.svg?label=PowerPC64">
-      </a>
-    </td>
-  </tr><tr>
     <td>Travis</td>
     <td>
       <a href="https://app.travis-ci.com/conda-forge/fastjet-feedstock">
