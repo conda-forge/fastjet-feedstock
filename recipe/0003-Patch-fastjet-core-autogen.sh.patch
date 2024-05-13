@@ -1,0 +1,44 @@
+From 33e3e50ab3ff813c30afddddf710740f74c7024f Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Mon, 13 May 2024 00:57:05 -0500
+Subject: [PATCH] Patch fastjet-core autogen.sh
+
+---
+ fastjet-core/autogen.sh | 21 ---------------------
+ 1 file changed, 21 deletions(-)
+
+diff --git a/fastjet-core/autogen.sh b/fastjet-core/autogen.sh
+index b7002236..4e0684a5 100755
+--- a/fastjet-core/autogen.sh
++++ b/fastjet-core/autogen.sh
+@@ -28,27 +28,6 @@ DIE=0
+ LIBTOOL=libtool
+ LIBTOOLIZE=libtoolize
+ 
+-# change executable names when running on Macs
+-# if test x`uname` = xDarwin; then
+- if [ `uname` = "Darwin" ]; then
+-   if [ x`whereis glibtool` = "xglibtool:" ]; then
+-      echo ""
+-      echo "On Mac OSX, the GNU libtool and libtoolize scripts, renamed"
+-      echo "glibtol and glibtoolize respectively by Apple to avoid"
+-      echo "conflict with Apple-provided libtool, should be used."
+-      echo ""
+-      echo "They should be already installed, together with Apple developer tools,"
+-      echo "in /usr/bin. If you see this message, they are not."
+-      echo ""
+-      echo "The GNU version can be retrieved from http://ftp.gnu.org/gnu/libtool/."
+-      echo "If they are (re)installed from sources in a different location,"
+-      echo "autogen.sh should then be modified accordingly."
+-      exit
+-   fi
+-   LIBTOOL=glibtool
+-   LIBTOOLIZE=glibtoolize
+- fi
+-
+ # check that all utilities needed by configure.ac are present
+ (autoconf --version) < /dev/null > /dev/null 2>&1 || {
+   echo
+-- 
+2.34.1
+

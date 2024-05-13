@@ -12,6 +12,7 @@ source:
   patches:
     - 0001-Don-t-overwrite-external-CXXFLAGS-and-LDFLAGS.patch
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
+    - 0003-Patch-fastjet-core-autogen.sh.patch
 
 build:
   number: 8
