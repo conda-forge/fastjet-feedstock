@@ -1,4 +1,4 @@
-From 01e873e4f9a6879b1abe17822f5b2189ca5f7799 Mon Sep 17 00:00:00 2001
+From 4852e5297d8d16c8d341a7c3843ad0664e605d3a Mon Sep 17 00:00:00 2001
 From: Matthew Feickert <matthew.feickert@cern.ch>
 Date: Mon, 13 May 2024 01:44:42 -0500
 Subject: [PATCH] Patch setup.py
@@ -8,7 +8,7 @@ Subject: [PATCH] Patch setup.py
  1 file changed, 19 insertions(+), 22 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 72cb832..bcd98ce 100644
+index 72cb832..d0ed157 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -51,16 +51,6 @@ def get_version() -> str:
@@ -37,7 +37,7 @@ index 72cb832..bcd98ce 100644
 +            # * fastjet/_fastjet_core/lib/
 +            # * fastjet/_fastjet_core/lib/python*/site-packages/
 +            if sys.platform == "darwin":
-+                _rpath = "'$@loader_path/_fastjet_core/lib:$@loader_path:$@loader_path/../..'"
++                _rpath = "'@loader_path/_fastjet_core/lib:@loader_path:@loader_path/../..'"
 +            else:
 +                _rpath = "'$$ORIGIN/_fastjet_core/lib:$$ORIGIN:$$ORIGIN/../..'"
              env = os.environ.copy()
