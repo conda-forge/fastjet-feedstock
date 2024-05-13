@@ -1,0 +1,40 @@
+From 9f33cb91e6ee3d8d875ce7f86d773b5248ab48f6 Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Mon, 13 May 2024 01:05:00 -0500
+Subject: [PATCH] Patch gmake out of setup.py
+
+---
+ setup.py | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 72cb832..a962205 100644
+--- a/setup.py
++++ b/setup.py
+@@ -150,13 +150,9 @@ class FastJetInstall(setuptools.command.install.install):
+ 
+         shutil.copytree(OUTPUT, fastjetdir / "_fastjet_core", symlinks=True)
+ 
+-        make = "make"
+-        if sys.platform == "darwin":
+-            make = "gmake"
+-
+         pythondir = pathlib.Path(
+             subprocess.check_output(
+-                f"""{make} -f Makefile --eval='print-pythondir:
++                """make -f Makefile --eval='print-pythondir:
+ \t@echo $(pythondir)
+ ' print-pythondir""",
+                 shell=True,
+@@ -167,7 +163,7 @@ class FastJetInstall(setuptools.command.install.install):
+ 
+         pyexecdir = pathlib.Path(
+             subprocess.check_output(
+-                f"""{make} -f Makefile --eval='print-pyexecdir:
++                """make -f Makefile --eval='print-pyexecdir:
+ \t@echo $(pyexecdir)
+ ' print-pyexecdir""",
+                 shell=True,
+-- 
+2.34.1
+

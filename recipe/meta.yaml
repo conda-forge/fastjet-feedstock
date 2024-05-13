@@ -13,6 +13,9 @@ source:
     - 0001-Don-t-overwrite-external-CXXFLAGS-and-LDFLAGS.patch
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
     - 0003-Patch-fastjet-core-autogen.sh.patch
+    # needed until gmake added to unix make builds
+    # c.f. https://github.com/conda-forge/make-feedstock/pull/24
+    - 0004-Patch-gmake-out-of-setup.py.patch
 
 build:
   number: 8
