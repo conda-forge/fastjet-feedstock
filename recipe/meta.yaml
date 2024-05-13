@@ -40,6 +40,7 @@ requirements:
     - cgal-cpp  # headers and CGALv5
     - gmp  # shared library
     - pip
+    - pybind11-abi
     - pybind11
     - python
   run:
