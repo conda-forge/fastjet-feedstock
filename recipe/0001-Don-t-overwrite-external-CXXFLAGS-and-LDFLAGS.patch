@@ -1,14 +1,14 @@
-From 8f81a0433debf79f216012c17c8d44f65b11f226 Mon Sep 17 00:00:00 2001
+From 01e873e4f9a6879b1abe17822f5b2189ca5f7799 Mon Sep 17 00:00:00 2001
 From: Matthew Feickert <matthew.feickert@cern.ch>
 Date: Mon, 13 May 2024 01:44:42 -0500
 Subject: [PATCH] Patch setup.py
 
 ---
- setup.py | 38 +++++++++++++++++---------------------
- 1 file changed, 17 insertions(+), 21 deletions(-)
+ setup.py | 41 +++++++++++++++++++----------------------
+ 1 file changed, 19 insertions(+), 22 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 72cb832..a8c3743 100644
+index 72cb832..bcd98ce 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -51,16 +51,6 @@ def get_version() -> str:
@@ -37,7 +37,7 @@ index 72cb832..a8c3743 100644
 +            # * fastjet/_fastjet_core/lib/
 +            # * fastjet/_fastjet_core/lib/python*/site-packages/
 +            if sys.platform == "darwin":
-+                _rpath = "'@loader_path/_fastjet_core/lib:@loader_path:@loader_path/../..'"
++                _rpath = "'$@loader_path/_fastjet_core/lib:$@loader_path:$@loader_path/../..'"
 +            else:
 +                _rpath = "'$$ORIGIN/_fastjet_core/lib:$$ORIGIN:$$ORIGIN/../..'"
              env = os.environ.copy()
@@ -90,6 +90,23 @@ index 72cb832..a8c3743 100644
                  ],
                  cwd=FASTJET_CONTRIB,
                  env=env,
+@@ -182,6 +178,7 @@ class FastJetInstall(setuptools.command.install.install):
+         setuptools.command.install.install.run(self)
+ 
+ 
++_dynamic_link_variable = "@loader_path" if sys.platform == "darwin" else "$ORIGIN"
+ ext_modules = [
+     Pybind11Extension(
+         "fastjet._ext",
+@@ -189,7 +186,7 @@ ext_modules = [
+         cxx_std=11,
+         include_dirs=[str(OUTPUT / "include")],
+         library_dirs=[str(OUTPUT / "lib")],
+-        runtime_library_dirs=["$ORIGIN/_fastjet_core/lib"],
++        runtime_library_dirs=[f"{_dynamic_link_variable}/_fastjet_core/lib"],
+         libraries=LIBS,
+     ),
+ ]
 -- 
 2.34.1
 
