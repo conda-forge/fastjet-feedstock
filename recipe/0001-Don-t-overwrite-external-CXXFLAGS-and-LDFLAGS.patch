@@ -37,7 +37,7 @@ index 72cb832..a8c3743 100644
 +            # * fastjet/_fastjet_core/lib/
 +            # * fastjet/_fastjet_core/lib/python*/site-packages/
 +            if sys.platform == "darwin":
-+                _rpath = "'$@loader_path/_fastjet_core/lib:$@loader_path:$@loader_path/../..'"
++                _rpath = "'@loader_path/_fastjet_core/lib:@loader_path:@loader_path/../..'"
 +            else:
 +                _rpath = "'$$ORIGIN/_fastjet_core/lib:$$ORIGIN:$$ORIGIN/../..'"
              env = os.environ.copy()
