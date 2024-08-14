@@ -1,5 +1,5 @@
 {% set name = "fastjet" %}
-{% set version = "3.4.0.6" %}
+{% set version = "3.4.2.1" %}
 
 
 package:
@@ -8,13 +8,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fastjet-{{ version }}.tar.gz
-  sha256: 86dea05ce7a030db9fe14e5bf1c0bc46351b6e439f9b9ef6b14a55ceefcc7b7a
+  sha256: 625609582770101886fa4a21d57d9aa69d478a7be4b6bca2b313ff0b4db88359
   patches:
     - 0001-Don-t-overwrite-external-CXXFLAGS-and-LDFLAGS.patch
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
 
 build:
-  number: 7
+  number: 0
   skip: true  # [not linux]
   script:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
