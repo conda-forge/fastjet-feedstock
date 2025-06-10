@@ -263,9 +263,7 @@ Feedstock Maintainers
 * [@chrispap95](https://github.com/chrispap95/)
 * [@jmduarte](https://github.com/jmduarte/)
 * [@jpivarski](https://github.com/jpivarski/)
+* [@kratsg](https://github.com/kratsg/)
 * [@lgray](https://github.com/lgray/)
 * [@matthewfeickert](https://github.com/matthewfeickert/)
-
-
-<!-- dummy commit to enable rerendering -->
 
