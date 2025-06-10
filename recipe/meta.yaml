@@ -28,10 +28,10 @@ requirements:
     - make                                  # [unix]
     - swig
     - cgal
-    - fastjet-cxx                           # [build_platform != target_platform]
+    - fastjet-cxx-python                    # [build_platform != target_platform]
     - fastjet-contrib                       # [build_platform != target_platform]
   host:
-    - fastjet-cxx
+    - fastjet-cxx-python
     - fastjet-contrib
     - python
   run:
