@@ -10,38 +10,33 @@ source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fastjet-{{ version }}.tar.gz
   sha256: 5c25a379659e162045c70d4cb21ef05a98445d0f3386132239c6445bb081317a
   patches:
-    - 0001-Don-t-overwrite-external-CXXFLAGS-and-LDFLAGS.patch
-    - 0002-Patch-fastjet-contrib-Makefile.in.patch
+    - 0001-patches-to-use-conda-dependencies.patch
 
 build:
   number: 0
-  skip: true  # [not linux]
+  skip: true  # [win]
   script:
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - {{ PYTHON }} -m pip install . -v -C"make.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"make.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_FASTJET_CXX_SWIG=ON"
 
 requirements:
   build:
-    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
     - cross-python_{{ target_platform }}    # [build_platform != target_platform]
     - python                                # [build_platform != target_platform]
-    - autoconf
-    - automake
-    - libtool
-    - make
-    - patch
+    - cmake
+    - make                                  # [unix]
     - swig
+    - cgal
+    - fastjet-cxx                           # [build_platform != target_platform]
+    - fastjet-contrib                       # [build_platform != target_platform]
   host:
-    - cgal-cpp  # headers and CGALv5
-    - gmp  # shared library
-    - pip
-    - pybind11
+    - fastjet-cxx
+    - fastjet-contrib
     - python
-    - setuptools_scm  # required for 'python -m build'
   run:
     - awkward >=2
-    - numpy >=1.13.3
+    - numpy >=1.13.3,<2.3
     - python
     - vector
 
