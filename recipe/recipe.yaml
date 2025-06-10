@@ -1,31 +1,35 @@
-{% set name = "fastjet" %}
-{% set version = "3.4.0.6" %}
+schema_version: 1
 
+context:
+  name: fastjet
+  version: 3.4.0.6
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fastjet-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
   sha256: 86dea05ce7a030db9fe14e5bf1c0bc46351b6e439f9b9ef6b14a55ceefcc7b7a
   patches:
     - 0001-Don-t-overwrite-external-CXXFLAGS-and-LDFLAGS.patch
     - 0002-Patch-fastjet-contrib-Makefile.in.patch
 
 build:
-  number: 8
-  skip: true  # [not linux]
+  number: 9
+  skip: not linux
   script:
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
-    - cross-python_{{ target_platform }}    # [build_platform != target_platform]
-    - python                                # [build_platform != target_platform]
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
     - autoconf
     - automake
     - libtool
@@ -45,19 +49,23 @@ requirements:
     - python
     - vector
 
-test:
-  imports:
-    - fastjet
-  commands:
-    - pip check
-  requires:
-    - pip
+tests:
+  - python:
+      imports:
+        - fastjet
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - pip list
 
 about:
-  home: https://github.com/scikit-hep/fastjet
   summary: Official FastJet bindings to Python and Awkward Array.
   license: BSD-3-Clause
   license_file: LICENSE
+  homepage: https://github.com/scikit-hep/fastjet
 
 extra:
   recipe-maintainers:
