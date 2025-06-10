@@ -53,11 +53,13 @@ tests:
   - python:
       imports:
         - fastjet
+      pip_check: true
   - requirements:
       run:
         - pip
+        - python
     script:
-      - pip check
+      - pip list
 
 about:
   summary: Official FastJet bindings to Python and Awkward Array.
