@@ -52,6 +52,18 @@ requirements:
     - fastjet-contrib
 
 tests:
+  - package_contents:
+      files:
+        - lib/python*/site-packages/fastjet/_ext.*
+      site_packages:
+        - fastjet
+        - fastjet._generalevent
+        - fastjet._multievent
+        - fastjet._pyjet
+        - fastjet._singleevent
+        - fastjet._swig
+        - fastjet._utils
+        - fastjet.version
   - python:
       imports:
         - fastjet
