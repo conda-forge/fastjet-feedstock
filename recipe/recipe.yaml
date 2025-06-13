@@ -15,13 +15,19 @@ source:
     - 0001-patches-to-use-conda-dependencies.patch
 
 build:
-  number: 0
+  variant:
+    use_keys:
+      - x86_64_microarch_level
+    down_prioritize_variant: ${{ 0 if x86_64_microarch_level == 1 else 1 }}
+  number: 1
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_FASTJET_CXX_SWIG=ON"
 
 requirements:
   build:
+    - if: unix and x86_64
+      then: x86_64-microarch-level ==${{ x86_64_microarch_level }}
     - ${{ compiler('cxx') }}
     - ${{ stdlib("c") }}
     - if: build_platform != target_platform
