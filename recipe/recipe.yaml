@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: 3.5.0.0
+  version: "3.5.0.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: 5c25a379659e162045c70d4cb21ef05a98445d0f3386132239c6445bb081317a
+  sha256: 2a1d6762d3e9861b1d38f0e6d08871b60369bb87201ea423968f6eacc0851e3f
   patches:
     - 0001-patches-to-use-conda-dependencies.patch
 
@@ -42,7 +42,7 @@ requirements:
     - scikit-build-core
     - setuptools_scm
     - pybind11
-    - python    
+    - python
   run:
     - awkward >=2
     - numpy >=1.13.3,<2.3
