@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: 3.5.0.0
+  version: "3.5.0.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,16 +10,16 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: 5c25a379659e162045c70d4cb21ef05a98445d0f3386132239c6445bb081317a
+  sha256: 2a1d6762d3e9861b1d38f0e6d08871b60369bb87201ea423968f6eacc0851e3f
   patches:
     - 0001-patches-to-use-conda-dependencies.patch
 
 build:
+  number: 2
   variant:
     use_keys:
       - x86_64_microarch_level
     down_prioritize_variant: ${{ 0 if x86_64_microarch_level == 1 else 1 }}
-  number: 1
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_FASTJET_CXX_SWIG=ON"
@@ -48,16 +48,28 @@ requirements:
     - scikit-build-core
     - setuptools_scm
     - pybind11
-    - python    
+    - python
   run:
     - awkward >=2
-    - numpy >=1.13.3,<2.3
+    - numpy >=1.13.3
     - python
     - vector
     - fastjet-cxx-python
     - fastjet-contrib
 
 tests:
+  - package_contents:
+      files:
+        - lib/python*/site-packages/fastjet/_ext.*
+      site_packages:
+        - fastjet
+        - fastjet._generalevent
+        - fastjet._multievent
+        - fastjet._pyjet
+        - fastjet._singleevent
+        - fastjet._swig
+        - fastjet._utils
+        - fastjet.version
   - python:
       imports:
         - fastjet
