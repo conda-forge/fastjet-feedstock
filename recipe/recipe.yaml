@@ -11,14 +11,11 @@ package:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
   sha256: 84481ea164ea815e9baa4bd970427bed76a5dd9ed168144d98a84ac9dd855e2b
-  patches:
-    - 0001-patches-to-use-conda-dependencies.patch
 
 build:
   number: 0
-  skip: win
   script:
-    - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_FASTJET_CXX_SWIG=ON"
+    - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
 requirements:
   build:
@@ -28,13 +25,9 @@ requirements:
       then:
         - cross-python_${{ target_platform }}
         - python
-        - fastjet-cxx-python
-        - fastjet-contrib
     - cmake
     - if: unix
       then: make
-    - swig
-    - cgal
   host:
     - fastjet-cxx-python
     - fastjet-contrib
@@ -43,6 +36,8 @@ requirements:
     - setuptools_scm
     - pybind11
     - python
+    - if: not (win and arm64)
+      then: cgal-cpp
   run:
     - awkward >=2
     - numpy >=1.13.3
@@ -54,7 +49,9 @@ requirements:
 tests:
   - package_contents:
       files:
-        - lib/python*/site-packages/fastjet/_ext.*
+        - if: win
+          then: Lib/site-packages/_ext.*
+          else: lib/python*/site-packages/fastjet/_ext.*
       site_packages:
         - fastjet
         - fastjet._generalevent
