@@ -50,7 +50,7 @@ tests:
   - package_contents:
       files:
         - if: win
-          then: Lib/site-packages/_ext.*
+          then: Lib/site-packages/fastjet/_ext.*
           else: lib/python*/site-packages/fastjet/_ext.*
       site_packages:
         - fastjet
