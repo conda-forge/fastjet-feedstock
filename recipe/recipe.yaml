@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: "3.5.0.1"
+  version: "3.5.1.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,12 +10,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: 2a1d6762d3e9861b1d38f0e6d08871b60369bb87201ea423968f6eacc0851e3f
+  sha256: 84481ea164ea815e9baa4bd970427bed76a5dd9ed168144d98a84ac9dd855e2b
   patches:
     - 0001-patches-to-use-conda-dependencies.patch
 
 build:
-  number: 1
+  number: 0
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_FASTJET_CXX_SWIG=ON"
