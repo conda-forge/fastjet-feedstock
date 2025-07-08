@@ -4,7 +4,7 @@ context:
   name: fastjet
   version: "3.5.1.0"
   # pinned fastjet_cxx version is always the 3 highest version numbers of fastjet
-  fastjet_cxx_version: ${{ (version | split(".")[:3] | join(".")) }}
+  fastjet_cxx_version: ${{ ((version | split('.') | list)[:3] | join('.')) }}
   # check alignment with https://github.com/scikit-hep/fastjet and https://github.com/cms-externals/fastjet-contrib
   fastjet_contrib_version: 1.101
 
