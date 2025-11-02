@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: "3.5.1.0"
+  version: "3.5.1.2"
   # pinned fastjet_cxx version is always the 3 highest version numbers of fastjet
   fastjet_cxx_version: ${{ ((version | split('.') | list)[:3] | join('.')) }}
   # check alignment with https://github.com/scikit-hep/fastjet and https://github.com/cms-externals/fastjet-contrib
@@ -14,7 +14,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: 84481ea164ea815e9baa4bd970427bed76a5dd9ed168144d98a84ac9dd855e2b
+  sha256: 743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d
 
 build:
   number: 1
