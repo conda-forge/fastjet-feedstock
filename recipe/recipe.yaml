@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: "3.5.1.1"
+  version: "3.5.1.2"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: d861bd03eff6ae0629b09a35b6edc1a6b38cedb2b061557afea20832d612afda
+  sha256: 743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d
 
 build:
-  number: 1
+  number: 0
   script:
     - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
