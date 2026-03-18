@@ -3,6 +3,10 @@ schema_version: 1
 context:
   name: fastjet
   version: "3.5.1.2"
+  # pinned fastjet_cxx version is always the 3 highest version numbers of fastjet
+  fastjet_cxx_version: ${{ ((version | split('.') | list)[:3] | join('.')) }}
+  # check alignment with https://github.com/scikit-hep/fastjet and https://github.com/cms-externals/fastjet-contrib
+  fastjet_contrib_version: 1.101
 
 package:
   name: ${{ name|lower }}
@@ -13,7 +17,7 @@ source:
   sha256: 743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d
 
 build:
-  number: 0
+  number: 1
   script:
     - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
@@ -29,8 +33,8 @@ requirements:
     - if: unix
       then: make
   host:
-    - fastjet-cxx-python
-    - fastjet-contrib
+    - fastjet-cxx-python ==${{ fastjet_cxx_version }}
+    - fastjet-contrib ==${{ fastjet_contrib_version }}
     - pip
     - scikit-build-core
     - setuptools_scm
@@ -43,8 +47,7 @@ requirements:
     - numpy >=1.13.3
     - python
     - vector
-    - fastjet-cxx-python
-    - fastjet-contrib
+    - fastjet-cxx-python ==${{ fastjet_cxx_version }}
 
 tests:
   - package_contents:
