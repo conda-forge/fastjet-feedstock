@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: "3.5.1.2"
+  version: "3.5.1.3"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
-  sha256: 743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d
+  sha256: 526c0538d3f0d2922795266bce0027a0719be327c815b7c3f54ebdcee635f79e
 
 build:
   number: 0
