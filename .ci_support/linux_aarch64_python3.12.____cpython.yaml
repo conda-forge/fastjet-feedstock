@@ -14,6 +14,8 @@ docker_image:
 - quay.io/condaforge/linux-anvil-aarch64:alma9
 fastjet_contrib:
 - '1.103'
+fastjet_cxx:
+- '3.5'
 pin_run_as_build:
   python:
     min_pin: x.x
