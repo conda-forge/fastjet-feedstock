@@ -12,7 +12,7 @@ source:
   sha256: 526c0538d3f0d2922795266bce0027a0719be327c815b7c3f54ebdcee635f79e
 
 build:
-  number: 1
+  number: 2
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
