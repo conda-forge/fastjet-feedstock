@@ -16,6 +16,8 @@ cxx_compiler_version:
 - '19'
 fastjet_contrib:
 - '1.103'
+fastjet_cxx:
+- '3.5'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pin_run_as_build:
