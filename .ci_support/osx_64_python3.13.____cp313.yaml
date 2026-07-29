@@ -15,7 +15,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 fastjet_contrib:
-- '1.103'
+- '1'
 fastjet_cxx:
 - '3.5'
 macos_machine:
