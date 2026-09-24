@@ -29,6 +29,7 @@ requirements:
       then: make
   host:
     - fastjet-cxx  # pick up global pinning
+    - fastjet-cxx-devel
     - fastjet-cxx-python
     - fastjet-contrib
     - pip
