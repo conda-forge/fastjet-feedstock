@@ -9,7 +9,7 @@ version = "2026.9.23"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/fastjet-feedstock"
 authors = ["@conda-forge/fastjet"]
 channels = ["conda-forge"]
-platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64", "win-arm64"]
 requires-pixi = ">=0.59.0"
 
 [tasks.build-locally]
@@ -262,6 +262,24 @@ description = "Debug fastjet-feedstock with variant win_64_python3.14.____cp314t
 [feature.build.tasks."inspect-win_64_python3.14.____cp314t"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_python3.14.____cp314t.yaml"
 description = "List contents of fastjet-feedstock packages built for variant win_64_python3.14.____cp314t"
+[feature.build.tasks."build-win_arm64_python3.14.____cp314"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_arm64_python3.14.____cp314.yaml --target-platform win-arm64"
+description = "Build fastjet-feedstock with variant win_arm64_python3.14.____cp314 directly (without setup scripts)"
+[feature.build.tasks."debug-win_arm64_python3.14.____cp314"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_arm64_python3.14.____cp314.yaml --target-platform win-arm64"
+description = "Debug fastjet-feedstock with variant win_arm64_python3.14.____cp314 directly (without setup scripts)"
+[feature.build.tasks."inspect-win_arm64_python3.14.____cp314"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_arm64_python3.14.____cp314.yaml"
+description = "List contents of fastjet-feedstock packages built for variant win_arm64_python3.14.____cp314"
+[feature.build.tasks."build-win_arm64_python3.14.____cp314t"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_arm64_python3.14.____cp314t.yaml --target-platform win-arm64"
+description = "Build fastjet-feedstock with variant win_arm64_python3.14.____cp314t directly (without setup scripts)"
+[feature.build.tasks."debug-win_arm64_python3.14.____cp314t"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/win_arm64_python3.14.____cp314t.yaml --target-platform win-arm64"
+description = "Debug fastjet-feedstock with variant win_arm64_python3.14.____cp314t directly (without setup scripts)"
+[feature.build.tasks."inspect-win_arm64_python3.14.____cp314t"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_arm64_python3.14.____cp314t.yaml"
+description = "List contents of fastjet-feedstock packages built for variant win_arm64_python3.14.____cp314t"
 
 [environments]
 build = ["build"]
