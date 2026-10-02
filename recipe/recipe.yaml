@@ -12,7 +12,7 @@ source:
   sha256: 8d06ade65fc9b671b87fce062e4cea387dabc4567792b183bbffa9991d3df9a0
 
 build:
-  number: 1
+  number: 2
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
@@ -52,7 +52,8 @@ tests:
   - package_contents:
       files:
         - if: win
-          then: Lib/site-packages/fastjet/_ext.*
+          # py3.15 moved Windows site-packages to lib/python/site-packages (as in conda-forge/fastjet-cxx-feedstock#29)
+          then: "{Lib,lib/python}/site-packages/fastjet/_ext.*"
           else: lib/python*/site-packages/fastjet/_ext.*
       site_packages:
         - fastjet

@@ -1,17 +1,11 @@
 c_stdlib:
-- sysroot
-c_stdlib_version:
-- '2.17'
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '15'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma10
+- vs2022
 fastjet_contrib:
 - '1'
 fastjet_cxx:
@@ -23,4 +17,7 @@ pin_run_as_build:
 python:
 - 3.14.* *_cp314
 target_platform:
-- linux-64
+- win-64
+zip_keys:
+- - python
+  - channel_sources
