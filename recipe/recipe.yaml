@@ -52,7 +52,8 @@ tests:
   - package_contents:
       files:
         - if: win
-          then: Lib/site-packages/fastjet/_ext.*
+          # py3.15 moved Windows site-packages to lib/python/site-packages (as in conda-forge/fastjet-cxx-feedstock#29)
+          then: "{Lib,lib/python}/site-packages/fastjet/_ext.*"
           else: lib/python*/site-packages/fastjet/_ext.*
       site_packages:
         - fastjet
