@@ -2,11 +2,11 @@ schema_version: 1
 
 context:
   name: fastjet
-  version: "3.5.1.5"
+  version: "3.5.2.0"
   # pinned fastjet_cxx version is always the 3 highest version numbers of fastjet
   fastjet_cxx_version: ${{ ((version | split('.') | list)[:3] | join('.')) }}
   # check alignment with https://github.com/scikit-hep/fastjet and https://github.com/cms-externals/fastjet-contrib
-  fastjet_contrib_version: "1.101"
+  fastjet_contrib_version: "1.105"
 
 package:
   name: fastjet
@@ -14,10 +14,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/f/fastjet/fastjet-${{ version }}.tar.gz
-  sha256: 8d06ade65fc9b671b87fce062e4cea387dabc4567792b183bbffa9991d3df9a0
+  sha256: 4f01dcf8c42031efe680d74d4a3d0c2301d99c46dbea21d81d9b8006865b81b7
 
 build:
-  number: 3
+  number: 1
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
