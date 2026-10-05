@@ -50,6 +50,8 @@ requirements:
     - numpy >=1.13.3
     - python
     - vector
+    - fastjet-cxx-python ==${{ fastjet_cxx_version }}
+    - fastjet-contrib ==${{ fastjet_contrib_version }}
 
 tests:
   - package_contents:
