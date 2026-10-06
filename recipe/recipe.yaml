@@ -19,6 +19,8 @@ source:
 build:
   number: 1
   script:
+    # fail if fastjet_contrib_version has drifted from the fjcontrib bundled in the PyPI sdist
+    - ${{ PYTHON }} -c "import pathlib,sys; v=pathlib.Path('extern/fastjet-contrib/VERSION').read_text().strip(); sys.exit(None if v=='${{ fastjet_contrib_version }}' else 'sdist bundles fjcontrib '+v)"
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
 requirements:
@@ -50,6 +52,7 @@ requirements:
     - numpy >=1.13.3
     - python
     - vector
+    - fastjet-cxx ==${{ fastjet_cxx_version }}
     - fastjet-cxx-python ==${{ fastjet_cxx_version }}
     - fastjet-contrib ==${{ fastjet_contrib_version }}
 
