@@ -32,12 +32,12 @@ requirements:
     - cmake
     - if: unix
       then: make
-    - fastjet-cxx-devel ==${{ fastjet_cxx_version }}
-    - fastjet-contrib-devel ==${{ fastjet_contrib_version }}
   host:
-    - fastjet-cxx ==${{ fastjet_cxx_version }} # pick up global pinning
+    - fastjet-cxx ==${{ fastjet_cxx_version }}
+    - fastjet-cxx-devel ==${{ fastjet_cxx_version }}
     - fastjet-cxx-python ==${{ fastjet_cxx_version }}
-    - fastjet-contrib ==${{ fastjet_contrib_version }} # pick up global pinning
+    - fastjet-contrib ==${{ fastjet_contrib_version }}
+    - fastjet-contrib-devel ==${{ fastjet_contrib_version }}
     - pip
     - scikit-build-core
     - setuptools_scm
