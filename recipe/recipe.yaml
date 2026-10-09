@@ -1,7 +1,12 @@
 schema_version: 1
 
 context:
+  name: fastjet
   version: "3.5.2.0"
+  # pinned fastjet_cxx version is always the 3 highest version numbers of fastjet
+  fastjet_cxx_version: ${{ ((version | split('.') | list)[:3] | join('.')) }}
+  # check alignment with https://github.com/scikit-hep/fastjet and https://github.com/cms-externals/fastjet-contrib
+  fastjet_contrib_version: "1.105"
 
 package:
   name: fastjet
@@ -12,8 +17,10 @@ source:
   sha256: 4f01dcf8c42031efe680d74d4a3d0c2301d99c46dbea21d81d9b8006865b81b7
 
 build:
-  number: 0
+  number: 1
   script:
+    # fail if fastjet_contrib_version has drifted from the fjcontrib bundled in the PyPI sdist
+    - ${{ PYTHON }} -c "import pathlib,sys; v=pathlib.Path('extern/fastjet-contrib/VERSION').read_text().strip(); sys.exit(None if v=='${{ fastjet_contrib_version }}' else 'sdist bundles fjcontrib '+v)"
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
 
 requirements:
@@ -28,11 +35,11 @@ requirements:
     - if: unix
       then: make
   host:
-    - fastjet-cxx  # pick up global pinning
-    - fastjet-cxx-devel
-    - fastjet-cxx-python
-    - fastjet-contrib  # pick up global pinning
-    - fastjet-contrib-devel
+    - fastjet-cxx ==${{ fastjet_cxx_version }}
+    - fastjet-cxx-devel ==${{ fastjet_cxx_version }}
+    - fastjet-cxx-python ==${{ fastjet_cxx_version }}
+    - fastjet-contrib ==${{ fastjet_contrib_version }}
+    - fastjet-contrib-devel ==${{ fastjet_contrib_version }}
     - pip
     - scikit-build-core
     - setuptools_scm
@@ -45,8 +52,9 @@ requirements:
     - numpy >=1.13.3
     - python
     - vector
-    - fastjet-cxx-python
-    - fastjet-contrib
+    - fastjet-cxx ==${{ fastjet_cxx_version }}
+    - fastjet-cxx-python ==${{ fastjet_cxx_version }}
+    - fastjet-contrib ==${{ fastjet_contrib_version }}
 
 tests:
   - package_contents:
